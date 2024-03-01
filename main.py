@@ -1,12 +1,8 @@
 import sys
-import time
 
-from PySide6.QtCore import Qt, QEasingCurve, QPropertyAnimation, QTimer, QRectF, QEvent, QThread, Property, QPoint, \
-    QPointF, QSize, QSizeF
+from PySide6.QtCore import Qt, QPropertyAnimation, QRectF, Property, QSize
 from PySide6.QtGui import QPainter, QImage, QBrush
-from PySide6.QtSvg import QSvgRenderer
-from PySide6.QtWidgets import QGraphicsOpacityEffect, QLabel, QWidget, QHBoxLayout, QApplication, QPushButton, \
-    QAbstractButton
+from PySide6.QtWidgets import QApplication, QAbstractButton
 import resources_rc
 
 
@@ -19,7 +15,6 @@ class JukeBox(QAbstractButton):
         self.juke_image = QImage(":/images/images/juke.png")
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground)
         self.set_image(image)
-        self._doing = True
         self._angle = 0
 
         self.rotate_animation = QPropertyAnimation(self, b"rotate", self)
@@ -59,7 +54,7 @@ class JukeBox(QAbstractButton):
         painter.setPen(Qt.PenStyle.NoPen)
 
         juke_side = min(self.width(), self.height())
-        image_side = juke_side * 2 / 3
+        image_side = juke_side * 3 / 5  # 调节在中间图片大小
         target_x = self.width() / 2 - juke_side / 2
         target_y = self.height() / 2 - juke_side / 2
         sub = juke_side / 2 - image_side / 2
