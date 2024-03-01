@@ -40,11 +40,6 @@ class JukeBox(QAbstractButton):
         self.rotate_animation.setEndValue(360)
         self.rotate_animation.start()
 
-    def stop(self):
-        self.rotate_animation.stop()
-        self._doing = False
-        self.update()
-
     def angle(self):
         return self._angle
 
